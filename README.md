@@ -1,4 +1,12 @@
-# findimg
+# FindImg
+
+Need the perfect image? _FindImg_ will make _finding_ it easy!
+
+This a Vue Image Search engine created with:
+* Vue
+* Node.js
+* Pixabay API
+* vercel
 
 ## Project setup
 ```
@@ -21,4 +29,6 @@ npm run lint
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+* [Vue Configuration Reference](https://cli.vuejs.org/config/).
+* [Pixabay API Docs](https://pixabay.com/api/docs/)
+
