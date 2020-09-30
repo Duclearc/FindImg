@@ -6,7 +6,6 @@ This a Vue Image Search engine created with:
 * Vue
 * Node.js
 * Pixabay API
-* vercel
 
 ## Project setup
 ```
