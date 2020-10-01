@@ -17,7 +17,7 @@ export default {
     color: #222;
     background-color: #AAA;
     min-height: 5vh;
-    padding: 1vh;
+    padding: 2vh 0 1vh;
     display: block;
 }
 

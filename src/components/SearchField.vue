@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import APIquery from './../assets/api'
 export default {
   name: "SearchField",
   data() {
@@ -19,26 +20,24 @@ export default {
     search() {
       const searchTerm = this.query;
       if (searchTerm.length < 1) return;
+      this.$emit("set-loading", true);
       this.images = [];
-      const API_URL = `https://pixabay.com/api/?key=${process.env.VUE_APP_API_KEY.replace(
-        "_",
-        "-"
-      )}&q=${searchTerm.replace(/ /g, "+")}`;
-      fetch(API_URL)
-        .then(res => res.json())
+      APIquery(searchTerm)
         .then(data => {
           const info = {
             images: data.hits,
-            total: data.total,
-            query: searchTerm,
+            total: data.totalHits,
+            query: searchTerm
           };
           this.$emit("set-images", info);
-        });
+        })
+        .finally(() =>
+          setTimeout(() => {
+            this.$emit("set-loading", false);
+          }, 1000)
+        );
       this.query = "";
     }
   }
 };
 </script>
-
-<style scoped>
-</style>
