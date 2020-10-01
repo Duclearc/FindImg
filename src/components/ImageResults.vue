@@ -28,6 +28,11 @@ export default {
 .imgList {
   column-count: 3;
 }
+@media only screen and (max-width: 600px) {
+  .imgList {
+    column-count: 1;
+  }
+}
 iframe {
   margin-top: 20px;
   border-radius: 20px;
@@ -39,5 +44,4 @@ img {
   border: solid 2px #999;
   border-radius: 20px;
 }
-
 </style>
