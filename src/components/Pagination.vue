@@ -7,24 +7,40 @@
 </template>
 
 <script>
+import APIquery from "./../assets/api";
 export default {
-  data() {
-    return {
-      page: 1,
-      lastPage: 10
-    };
-  },
+  props: ["query"],
+  data: () => ({ page: 1, totalImages: 15, lastPage: 10 }),
   methods: {
+    loadPage() {
+      APIquery(this.query, this.page)
+        .then(data => {
+          this.$emit("set-images", {
+            images: data.hits,
+            total: data.totalHits,
+          });
+        })
+        .catch(err => {
+          this.$emit("set-images", null);
+          console.log(err);
+          alert("Ops. Something went wrong. Please reload and try again");
+        })
+        .finally(() => {
+          setTimeout(() => {
+            this.$emit("set-loading", false);
+          }, 300);
+        });
+    },
     next() {
-      if (this.page + 1 <= this.lastPage) {
+      if (this.page++ <= this.lastPage) {
         this.page++;
-        this.$emit("set-page", this.page);
+        this.loadPage();
       }
     },
     previous() {
-      if (this.page - 1) {
+      if (this.page--) {
         this.page--;
-        this.$emit("set-page", this.page);
+        this.loadPage();
       }
     },
     setLastPage() {

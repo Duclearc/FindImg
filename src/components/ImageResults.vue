@@ -28,7 +28,12 @@ export default {
 .imgList {
   column-count: 3;
 }
-@media only screen and (max-width: 600px) {
+@media(max-width: 1204px) {
+  .imgList {
+    column-count: 2;
+  }
+}
+@media(max-width: 800px) {
   .imgList {
     column-count: 1;
   }
