@@ -2,6 +2,7 @@
   <div id="ImageSearch">
     <SearchField @set-query="setQuery" />
     <img v-if="loading" class="spinner" src="./../assets/loading.gif" alt="loading spinner" />
+    <ImageResults v-if="!loading && query" :images="images" :total="totalFound" :query="query" />
     <Pagination
       v-if="!loading && totalFound > 0"
       @set-page="setPage"
@@ -9,7 +10,6 @@
       :page="page"
       :totalImages="totalFound"
     />
-    <ImageResults v-if="!loading && query" :images="images" :total="totalFound" :query="query" />
   </div>
 </template>
 
