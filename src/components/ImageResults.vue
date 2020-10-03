@@ -10,8 +10,7 @@
     />
   </section>
   <section v-else>
-    <h2 id="resultsTitle">Results for "{{query}}"</h2>
-    <p>Showing {{images.length}} out of {{total}} images</p>
+    <h2 id="resultsTitle">{{total}} "{{query}}" Images Found</h2>
     <div class="imgList">
       <img v-for="image in images" :key="image.id" :src="image.previewURL" :alt="image.tags" />
     </div>

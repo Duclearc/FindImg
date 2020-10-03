@@ -1,51 +1,39 @@
 <template>
-  <div id="pagination">
+  <div id="pagination" v-if="lastPage > 1">
     <button :disabled="page==1" @click="previous">Previous</button>
-    <span class="spacer" />
+    <span class="spacer">
+      <p>{{page}} of {{lastPage}}</p>
+    </span>
     <button :disabled="page==lastPage" @click="next">Next</button>
   </div>
 </template>
 
 <script>
-import APIquery from "./../assets/api";
 export default {
-  props: ["query"],
-  data: () => ({ page: 1, totalImages: 15, lastPage: 10 }),
+  props: ["query", "totalImages", "page"],
+  data: () => ({
+    lastPage: 1,
+    resultsPerPage: 20
+  }),
   methods: {
-    loadPage() {
-      APIquery(this.query, this.page)
-        .then(data => {
-          this.$emit("set-images", {
-            images: data.hits,
-            total: data.totalHits,
-          });
-        })
-        .catch(err => {
-          this.$emit("set-images", null);
-          console.log(err);
-          alert("Ops. Something went wrong. Please reload and try again");
-        })
-        .finally(() => {
-          setTimeout(() => {
-            this.$emit("set-loading", false);
-          }, 300);
-        });
-    },
     next() {
-      if (this.page++ <= this.lastPage) {
-        this.page++;
-        this.loadPage();
+      let page = this.page;
+      if (page++ <= this.lastPage) {
+        this.$emit("set-page", page);
       }
     },
     previous() {
-      if (this.page--) {
-        this.page--;
-        this.loadPage();
+      let page = this.page;
+      if (page--) {
+        this.$emit("set-page", page);
       }
     },
     setLastPage() {
-      console.log("last page set", this.lastPage);
+      this.lastPage = Math.round(this.totalImages / this.resultsPerPage);
     }
+  },
+  mounted() {
+    this.setLastPage();
   }
 };
 </script>
@@ -66,5 +54,7 @@ export default {
 }
 .spacer {
   flex-grow: 1;
+  position: relative;
+  top: 15px;
 }
 </style>
