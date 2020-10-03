@@ -14,8 +14,8 @@ export default {
 
 <style>
 .appHeader {
-    color: #222;
-    background-color: #AAA;
+    color: rgba(34,34,34,1);
+    background-color: rgba(170,170,170,1);
     min-height: 5vh;
     padding: 2vh 0 1vh;
     display: block;

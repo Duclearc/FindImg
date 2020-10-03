@@ -30,7 +30,7 @@ body {
 }
 #logo {
   border-radius: 50%;
-  box-shadow: 1px 5px 5px #999;
+  box-shadow: 1px 5px 5px rgba(153,153,153,1);
   margin: 5vh auto;
   display: block;
 }

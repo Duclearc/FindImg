@@ -50,7 +50,7 @@ export default {
   margin-top: 10px;
   opacity: 50%;
   border: 0;
-  color: #000;
+  color: rgba(0,0,0,1);
 }
 .spacer {
   flex-grow: 1;

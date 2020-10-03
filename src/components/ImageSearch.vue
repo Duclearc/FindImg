@@ -17,7 +17,7 @@
 import SearchField from "./SearchField";
 import ImageResults from "./ImageResults";
 import Pagination from "./Pagination";
-import APIquery from "./../assets/api";
+import APIquery from "./../api";
 
 export default {
   name: "ImageSearch",
@@ -31,7 +31,7 @@ export default {
     totalFound: 0,
     query: "",
     loading: false,
-    page: 1
+    page: 1,
   }),
   methods: {
     setLoading(e) {
@@ -79,8 +79,8 @@ export default {
   padding: 0 5%;
 }
 button {
-  background-color: #999;
-  color: #000;
+  background-color: rgba(153,153,153,1);
+  color: rgba(0,0,0,1);
   font-size: 1.3rem;
 }
 input {
