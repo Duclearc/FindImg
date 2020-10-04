@@ -22,48 +22,30 @@
           :alt="image.tags"
           @click="showLarger(image)"
         />
-        <img
-          slot="preloader"
-          class="largeImagePreview spinner"
-          src="./../assets/loading.gif"
-          alt="loading spinner"
-        />
+        <img slot="preloader" class="spinner" src="./../assets/loading.gif" alt="loading spinner" />
         <div slot="error">IMAGE UNAVAILABLE</div>
       </vue-load-image>
-      <div id="largeImageBox" v-if="showLarge" @click="showLarge=false">
-        <span class="hideImage" @click="showLarge=false">X</span>
-        <span class="helper"></span>
-        <div id="imageActions" class="largeImagePreview">
-          <a id="credits" :href="creatorPage">by {{creatorName}}</a>
-          <a :href="downloadLink">
-            <vue-load-image>
-              <img
-                slot="image"
-                class="largeImagePreview"
-                :src="this.largerImageURL"
-                :alt="imageDescription"
-              />
-              <img
-                slot="preloader"
-                class="largeImagePreview spinner"
-                src="./../assets/loading.gif"
-                alt="loading spinner"
-              />
-              <div slot="error">IMAGE UNAVAILABLE</div>
-            </vue-load-image>
-          </a>
-        </div>
-      </div>
+      <image-selected
+        v-if="showLarge"
+        :imageDescription="imageDescription"
+        :largerImageURL="largerImageURL"
+        :downloadLink="downloadLink"
+        :creatorName="creatorName"
+        :creatorPage="creatorPage"
+        @show-larger="setShowLarge"
+      />
     </div>
   </section>
 </template>
 
 <script>
 import VueLoadImage from "vue-load-image";
+import ImageSelected from "./ImageSelected";
 export default {
   props: ["images", "total", "query"],
   components: {
     "vue-load-image": VueLoadImage,
+    "image-selected": ImageSelected
   },
   data: () => ({
     showLarge: false,
@@ -71,7 +53,7 @@ export default {
     largerImageURL: "",
     downloadLink: "",
     creatorName: "",
-    creatorPage: "",
+    creatorPage: ""
   }),
   methods: {
     showLarger(image) {
@@ -86,7 +68,10 @@ export default {
       }/`;
       this.showLarge = true;
     },
-  },
+    setShowLarge(e) {
+      this.showLarge = e;
+    }
+  }
 };
 </script>
 
@@ -119,46 +104,6 @@ iframe {
 img {
   border: solid 2px rgba(153, 153, 153, 1);
   border-radius: 20px;
-}
-#largeImageBox {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  overflow: auto;
-  white-space: nowrap;
-}
-.largeImagePreview {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-  z-index: 2;
-  font-size: 2rem;
-  text-align: end;
-  color: rgba(255, 255, 255, 1);
-}
-#credits {
-  font-style: italic;
-  text-decoration: none;
-  color: inherit;
-}
-.hideImage {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-.helper {
-  display: inline-block;
-  height: 10%;
-  vertical-align: middle;
 }
 .spinner {
   max-width: 10vh;
