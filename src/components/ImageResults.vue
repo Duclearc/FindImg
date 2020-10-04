@@ -12,32 +12,45 @@
   <section v-else>
     <h2 id="resultsTitle">{{total}} "{{query}}" Images Found</h2>
     <div id="imageList">
-      <img
-        v-for="image in images"
-        class="imagePreview"
-        :key="image.id"
-        :src="image.previewURL"
-        :alt="image.tags"
-        @click="showLarger(image)"
-      />
-      <div id="largeImageBox" v-if="showLarge" @click="showLarge=false">
-        <span class="hideImage" @click="showLarge=false">X</span>
-        <span class="helper"></span>
+      <vue-load-image>
         <img
-          v-if="loading"
+          v-for="image in images"
+          slot="image"
+          class="imagePreview"
+          :key="image.id"
+          :src="image.previewURL"
+          :alt="image.tags"
+          @click="showLarger(image)"
+        />
+        <img
+          slot="preloader"
           class="largeImagePreview spinner"
           src="./../assets/loading.gif"
           alt="loading spinner"
         />
-        <div v-else id="imageActions" class="largeImagePreview">
+        <div slot="error">IMAGE UNAVAILABLE</div>
+      </vue-load-image>
+      <div id="largeImageBox" v-if="showLarge" @click="showLarge=false">
+        <span class="hideImage" @click="showLarge=false">X</span>
+        <span class="helper"></span>
+        <div id="imageActions" class="largeImagePreview">
           <a id="credits" :href="creatorPage">by {{creatorName}}</a>
           <a :href="downloadLink">
-            <img
-              v-if="showLarge"
-              class="largeImagePreview"
-              :src="this.largerImageURL"
-              :alt="imageDescription"
-            />
+            <vue-load-image>
+              <img
+                slot="image"
+                class="largeImagePreview"
+                :src="this.largerImageURL"
+                :alt="imageDescription"
+              />
+              <img
+                slot="preloader"
+                class="largeImagePreview spinner"
+                src="./../assets/loading.gif"
+                alt="loading spinner"
+              />
+              <div slot="error">IMAGE UNAVAILABLE</div>
+            </vue-load-image>
           </a>
         </div>
       </div>
@@ -46,8 +59,12 @@
 </template>
 
 <script>
+import VueLoadImage from "vue-load-image";
 export default {
   props: ["images", "total", "query"],
+  components: {
+    "vue-load-image": VueLoadImage
+  },
   data: () => ({
     showLarge: false,
     imageDescription: "",
