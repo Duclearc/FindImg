@@ -8,6 +8,8 @@
         <vue-load-image>
           <img
             slot="image"
+            id="largeImage"
+            title="Click to Download"
             class="largeImagePreview"
             :src="this.largerImageURL"
             :alt="imageDescription"
@@ -68,13 +70,21 @@ export default {
   text-align: end;
   color: rgba(255, 255, 255, 1);
 }
+#largeImage:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 1);
+}
 #credits {
   font-style: italic;
   text-decoration: none;
   color: inherit;
 }
+#credits:hover {
+  font-style: italic;
+  text-decoration: underline;
+  color: inherit;
+}
 #downloadLink:focus {
-    outline: none;
+  outline: none;
 }
 .hideImage {
   position: absolute;
