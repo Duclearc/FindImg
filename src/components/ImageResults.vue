@@ -63,7 +63,7 @@ import VueLoadImage from "vue-load-image";
 export default {
   props: ["images", "total", "query"],
   components: {
-    "vue-load-image": VueLoadImage
+    "vue-load-image": VueLoadImage,
   },
   data: () => ({
     showLarge: false,
@@ -72,11 +72,9 @@ export default {
     downloadLink: "",
     creatorName: "",
     creatorPage: "",
-    loading: false
   }),
   methods: {
     showLarger(image) {
-      this.loading = true;
       this.largerImageURL = image.largeImageURL;
       this.imageDescription = `${image.tags} image`;
       this.downloadLink = `https://pixabay.com/images/download/${
@@ -87,9 +85,8 @@ export default {
         image.user_id
       }/`;
       this.showLarge = true;
-      this.loading = false;
-    }
-  }
+    },
+  },
 };
 </script>
 

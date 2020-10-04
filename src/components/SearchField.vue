@@ -9,19 +9,16 @@
 
 <script>
 export default {
-  name: "SearchField",
-  data() {
-    return {
-      query: ""
-    };
-  },
+  data: () => ({
+    query: "",
+  }),
   methods: {
     setQuery() {
       if (this.query.length < 1) return;
       this.images = [];
       this.$emit("set-query", this.query);
       this.query = "";
-    }
-  }
+    },
+  },
 };
 </script>

@@ -13,7 +13,7 @@ export default {
   props: ["query", "totalImages", "page"],
   data: () => ({
     lastPage: 1,
-    resultsPerPage: 20
+    resultsPerPage: 20,
   }),
   methods: {
     next() {
@@ -28,13 +28,10 @@ export default {
         this.$emit("set-page", page);
       }
     },
-    setLastPage() {
-      this.lastPage = Math.round(this.totalImages / this.resultsPerPage);
-    }
   },
   mounted() {
-    this.setLastPage();
-  }
+    this.lastPage = Math.round(this.totalImages / this.resultsPerPage);
+  },
 };
 </script>
 

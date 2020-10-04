@@ -24,7 +24,7 @@ export default {
   components: {
     SearchField,
     ImageResults,
-    Pagination
+    Pagination,
   },
   data: () => ({
     images: [],
@@ -69,8 +69,8 @@ export default {
             this.setLoading(false);
           }, 300);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
