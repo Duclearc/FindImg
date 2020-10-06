@@ -1,5 +1,5 @@
 module.exports = (query, page) => {
-    const API_KEY = process.env.VUE_APP_API_KEY?.replace("_","-") || '';
+    const API_KEY = process.env.VUE_APP_PIXABAY_API_KEY?.replace("_","-") || '';
     const API_URL = `https://pixabay.com/api/?key=${API_KEY}&q=${query.replace(/ /g, "+")}&page=${page || 1}`;
     return fetch(API_URL)
         .then(res => res.json())
