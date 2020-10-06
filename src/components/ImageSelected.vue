@@ -83,9 +83,6 @@ export default {
   text-decoration: underline;
   color: inherit;
 }
-#downloadLink:focus {
-  outline: none;
-}
 .hideImage {
   position: absolute;
   top: 15px;
