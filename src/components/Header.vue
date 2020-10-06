@@ -16,6 +16,7 @@ header {
   background-color: rgba(170, 170, 170, 1);
   min-height: 5rem;
   padding-top: 3rem;
+  padding-bottom: 1rem;
   display: block;
 }
 </style>
