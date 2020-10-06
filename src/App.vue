@@ -39,7 +39,7 @@ body {
   min-height: 100%;
 }
 #content {
-  padding-bottom: 3rem;
+  padding-bottom: 5rem;
   background-color: rgba(255, 255, 255, 1);
   min-height: 80vh;
   padding-top: 1rem;
