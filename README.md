@@ -7,6 +7,10 @@ This a Vue Image Search engine created with:
 * Node.js
 * Pixabay API
 
+## Test it youself
+
+Go to `https://findimg.vercel.app/` and have fun!
+
 ## Project setup
 ```
 npm install
