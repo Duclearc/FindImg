@@ -9,7 +9,7 @@ This a Vue Image Search engine created with:
 
 ## Test it youself
 
-Go to `https://findimg.vercel.app/` and have fun!
+Go to [`https://findimg.vercel.app/`](https://findimg.vercel.app/) and have fun!
 
 ## Project setup
 ```
